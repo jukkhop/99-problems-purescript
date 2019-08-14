@@ -1,0 +1,11 @@
+{
+  "author": "Jukka Hopeavuori <jukka.hopea@gmail.com>",
+  "description": "99 problems solved in PureScript",
+  "license": "MIT",
+  "name": "99-problems-purescript",
+  "scripts": {},
+  "version": "1.0.0",
+  "devDependencies": {
+    "purty": "^4.5.1"
+  }
+}
