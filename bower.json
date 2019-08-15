@@ -1,19 +1,15 @@
 {
   "name": "99-problems-purescript",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "output"
-  ],
+  "ignore": ["**/.*", "node_modules", "bower_components", "output"],
   "dependencies": {
-    "purescript-prelude": "^4.1.1",
+    "purescript-arrays": "^5.3.0",
+    "purescript-assert": "^4.1.0",
     "purescript-console": "^4.2.0",
     "purescript-effect": "^2.0.1",
     "purescript-lists": "^5.4.1",
-    "purescript-arrays": "^5.3.0",
     "purescript-maybe": "^4.0.1",
-    "purescript-assert": "^4.1.0"
+    "purescript-prelude": "^4.1.1",
+    "purescript-strings": "^4.0.1"
   },
   "devDependencies": {
     "purescript-psci-support": "^4.0.0"
