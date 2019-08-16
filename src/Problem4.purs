@@ -1,6 +1,6 @@
 module Problem4 where
 
-import Data.List (List, length)
+import Data.Array (length)
 
-main :: forall a. List a -> Int
-main = length
+myLength :: forall a. Array a -> Int
+myLength = length

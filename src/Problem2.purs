@@ -1,10 +1,10 @@
 module Problem2 where
 
-import Data.List (List, init, last)
+import Data.Array (init, last)
 import Data.Maybe (Maybe(Just, Nothing))
 
-main :: forall a. List a -> Maybe a
-main x = do
+myButLast :: forall a. Array a -> Maybe a
+myButLast x = do
   let
     xs = init x
   case xs of

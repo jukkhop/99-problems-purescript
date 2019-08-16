@@ -1,7 +1,7 @@
 module Problem6 where
 
-import Data.List (List, (\\), length, reverse)
 import Prelude
+import Data.Array (difference, length, reverse)
 
-main :: forall a. Eq a => List a -> Boolean
-main arr = length (reverse arr \\ arr) == 0
+isPalindrome :: forall a. Eq a => Array a -> Boolean
+isPalindrome x = length (difference (reverse x) x) == 0

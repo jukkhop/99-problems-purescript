@@ -1,7 +1,7 @@
 module Problem3 where
 
-import Data.List (List, index)
+import Data.Array (index)
 import Data.Maybe (Maybe)
 
-main :: forall a. List a -> Int -> Maybe a
-main xs i = index xs i
+elementAt :: forall a. Array a -> Int -> Maybe a
+elementAt xs i = index xs i
