@@ -24,20 +24,20 @@ main = do
     flattened =
       flatten
         ( NestedArray
-            [ (Elem 1)
-            , (Elem 2)
-            , (Elem 3)
-            , ( NestedArray
-                  [ (Elem 4)
-                  , (Elem 5)
-                  , ( NestedArray
-                        [ (Elem 6)
-                        , (Elem 7)
-                        ]
-                    )
+          [ (Elem 1)
+          , (Elem 2)
+          , (Elem 3)
+          , ( NestedArray
+              [ (Elem 4)
+              , (Elem 5)
+              , ( NestedArray
+                  [ (Elem 6)
+                  , (Elem 7)
                   ]
-              )
-            ]
+                )
+              ]
+            )
+          ]
         )
   --
   log "myLast [1, 2, 3, 4] should equal to 4"
