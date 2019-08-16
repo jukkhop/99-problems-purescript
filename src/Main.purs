@@ -13,13 +13,15 @@ import Problem4 (myLength)
 import Problem5 (myReverse)
 import Problem6 (isPalindrome)
 import Problem7 (flatten, NestedArray(..))
+import Problem8 (compress)
+import Problem9 (pack)
 import Test.Assert (assert)
 
 main :: Effect Unit
 main = do
   let
-    stringLength = myLength <<< toCharArray
-    reverseString = fromCharArray <<< myReverse <<< toCharArray
+    stringLength = toCharArray >>> myLength
+    reverseString = toCharArray >>> myReverse >>> fromCharArray
 
     flattened =
       flatten
@@ -64,7 +66,13 @@ main = do
   log "isPalindrome [1,2,4,8,16,8,4,2,1] should be true"
   assert $ isPalindrome [ 1, 2, 4, 8, 16, 8, 4, 2, 1 ] == true
   --
-  log "flattened should be [1,2,3,4,5,6,7]"
+  log "flattened should equal to [1,2,3,4,5,6,7]"
   assert $ flattened == [ 1, 2, 3, 4, 5, 6, 7 ]
+  --
+  log "compress [1,2,3,1,1,2,4] should equal to [1,2,3,4]"
+  assert $ compress [ 1, 2, 3, 1, 1, 2, 4 ] == [ 1, 2, 3, 4 ]
+  --
+  log "pack [1,3,2,2,1,3,1] should equal to [[1,1,1],[2,2],[3,3]]"
+  assert $ pack [ 1, 3, 2, 2, 1, 3, 1 ] == [ [ 1, 1, 1 ], [ 2, 2 ], [ 3, 3 ] ]
   --
   log "✅ All tests passed!"
