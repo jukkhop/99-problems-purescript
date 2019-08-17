@@ -1,0 +1,13 @@
+module Problem8 where
+
+import Prelude
+
+import Data.Array (foldl)
+import Data.Array.NonEmpty (NonEmptyArray, head, last, singleton, snoc, tail)
+
+reduce :: forall a. Ord a => NonEmptyArray a -> a -> NonEmptyArray a
+reduce a b | last a /= b = snoc a b
+reduce a b = a
+
+compress :: forall a. Ord a => NonEmptyArray a -> NonEmptyArray a
+compress x = foldl reduce (singleton $ head x) (tail x)
