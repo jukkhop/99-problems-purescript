@@ -2,6 +2,7 @@ module Part1 where
 
 import Prelude
 
+import Data.Array.NonEmpty (NonEmptyArray)
 import Data.Maybe (fromMaybe)
 import Data.String.CodeUnits as SU
 import Data.String.NonEmpty.CodeUnits as SNEU
@@ -10,6 +11,7 @@ import Data.Tuple (Tuple(..))
 import Effect (Effect)
 import Effect.Console (log)
 import Problem1 (myLast)
+import Problem10 (encode)
 import Problem2 (myButLast)
 import Problem3 (elementAt)
 import Problem4 (myLength)
@@ -18,34 +20,41 @@ import Problem6 (isPalindrome)
 import Problem7 (flatten, NestedArray(..))
 import Problem8 (compress)
 import Problem9 (pack)
-import Problem10 (encode)
 import Test.Assert (assert)
+
+stringLength :: String -> Int
+stringLength = SU.toCharArray >>> myLength
+
+reverseString :: String -> String
+reverseString = SU.toCharArray >>> myReverse >>> SU.fromCharArray
+
+stringToNonEmptyArray :: String -> NonEmptyArray Char
+stringToNonEmptyArray = NonEmptyString >>> SNEU.toNonEmptyCharArray
+
+nonEmptyArrayToString :: NonEmptyArray Char -> String
+nonEmptyArrayToString = SNEU.fromNonEmptyCharArray >>> toString
+
+compressString :: String -> String
+compressString = stringToNonEmptyArray >>> compress >>> nonEmptyArrayToString
 
 main :: Effect Unit
 main = do
   let
-    stringLength = SU.toCharArray >>> myLength
-    reverseString = SU.toCharArray >>> myReverse >>> SU.fromCharArray
-
-    stringToNonEmptyArray = NonEmptyString >>> SNEU.toNonEmptyCharArray
-    nonEmptyArrayToString = SNEU.fromNonEmptyCharArray >>> toString
-    compressString = stringToNonEmptyArray >>> compress >>> nonEmptyArrayToString
-
     flattened =
       flatten
         ( NestedArray
-            [ (Elem 1)
-            , ( NestedArray
-                  [ (Elem 2)
-                  , ( NestedArray
-                        [ (Elem 3)
-                        , (Elem 4)
-                        ]
-                    )
-                  , (Elem 5)
-                  ]
-              )
-            ]
+          [ (Elem 1)
+          , ( NestedArray
+              [ (Elem 2)
+              , ( NestedArray
+                    [ (Elem 3)
+                    , (Elem 4)
+                    ]
+                )
+              , (Elem 5)
+              ]
+            )
+          ]
         )
   --
   log "myLast [1, 2, 3, 4] should equal to 4"
@@ -83,4 +92,3 @@ main = do
   --
   log "encode \"aaaabccaadeeee\" should equal to [(4,'a'),(1,'b'),(2,'c'),(2,'a'),(1,'d'),(4,'e')]"
   assert $ encode (stringToNonEmptyArray "aaaabccaadeeee") == [ (Tuple 4 'a'), (Tuple 1 'b'), (Tuple 2 'c'), (Tuple 2 'a'), (Tuple 1 'd'), (Tuple 4 'e') ]
-
