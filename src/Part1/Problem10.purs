@@ -6,8 +6,5 @@ import Data.Array (group)
 import Data.Array.NonEmpty (NonEmptyArray, head, length, toArray)
 import Data.Tuple (Tuple(..))
 
-toTuple :: forall a. Eq a => NonEmptyArray a -> Tuple Int a
-toTuple a = Tuple (length a) (head a)
-
 encode :: forall a. Eq a => NonEmptyArray a -> Array (Tuple Int a)
-encode x = map toTuple (group $ toArray x)
+encode x = map (\e -> Tuple (length e) (head e)) (group $ toArray x)
