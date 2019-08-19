@@ -5,5 +5,5 @@ import Prelude
 import Data.Array (group)
 import Data.Array.NonEmpty (toArray)
 
-pack :: forall a. Eq a => Array a -> Array (Array a)
+pack :: ∀ a. Eq a => Array a -> Array (Array a)
 pack x = map toArray (group x)

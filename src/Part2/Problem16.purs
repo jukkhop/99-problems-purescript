@@ -4,7 +4,7 @@ import Prelude
 import Data.Array (catMaybes, mapWithIndex)
 import Data.Maybe (Maybe(..))
 
-dropEvery :: forall a. Array a -> Int -> Array (a)
+dropEvery :: ∀ a. Array a -> Int -> Array (a)
 dropEvery x nth = catMaybes $ mapWithIndex mapper x
   where
     mapper :: Int -> a -> Maybe a

@@ -8,9 +8,9 @@ import Data.Tuple (Tuple(..))
 
 type Elem a = Either (Tuple Int a) a
 
-toElem :: forall a. Eq a => NonEmptyArray a -> Elem a
+toElem :: ∀ a. Eq a => NonEmptyArray a -> Elem a
 toElem x | length x > 1 = Left (Tuple (length x) (head x))
 toElem x = Right (head x)
 
-encodeModified :: forall a. Eq a => NonEmptyArray a -> Array (Elem a)
+encodeModified :: ∀ a. Eq a => NonEmptyArray a -> Array (Elem a)
 encodeModified x = map toElem (group $ toArray x)
