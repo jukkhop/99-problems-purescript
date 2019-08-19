@@ -1,7 +1,6 @@
 module Problem13 where
 
 import Prelude
-
 import Data.Array.NonEmpty (NonEmptyArray, cons, fromArray, head, init, last, singleton, tail)
 import Data.Either (Either(..))
 import Data.Foldable (foldr)

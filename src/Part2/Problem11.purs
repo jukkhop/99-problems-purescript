@@ -1,7 +1,6 @@
 module Problem11 where
 
 import Prelude
-
 import Data.Array (group)
 import Data.Array.NonEmpty (NonEmptyArray, head, length, toArray)
 import Data.Either (Either(..))

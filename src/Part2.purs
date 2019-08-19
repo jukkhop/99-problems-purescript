@@ -12,6 +12,9 @@ import Part1 (stringToNonEmptyArray)
 import Problem11 (encodeModified)
 import Problem12 (decodeModified)
 import Problem13 (encodeDirect)
+import Problem14 (dupli)
+import Problem15 (repli)
+import Problem16 (dropEvery)
 import Test.Assert (assert)
 
 main :: Effect Unit
@@ -34,3 +37,12 @@ main = do
   --
   log "encodeDirect \"aaaabccaadeeee\" should equal to [(4,'a'),'b',(2,'c'),(2,'a'),'d',(4,'e')]"
   assert $ toArray (encodeDirect $ stringToNonEmptyArray "aaaabccaadeeee") == expectedEncoded
+  --
+  log "dupli [1,2,3] should equal to [1,1,2,2,3,3]"
+  assert $ dupli [1, 2, 3] == [1, 1, 2, 2, 3, 3]
+  --
+  log "repli (\"abc\" 3) should equal to \"aaabbbccc\" "
+  assert $ repli (SU.toCharArray "abc") 3 == SU.toCharArray "aaabbbccc"
+  --
+  log "dropEvery (\"abcdefghik\" 3) should equal to \"abdeghk\" "
+  assert $ dropEvery (SU.toCharArray "abcdefghik") 3 == SU.toCharArray "abdeghk"
