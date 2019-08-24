@@ -12,4 +12,4 @@ rndSelect xs n = do
   randoms <- replicateM n (randomInt 0 high)
   pure $ catMaybes (foldl (\acc cur -> (index xs cur) : acc) Nil randoms)
   where
-    high = (length xs) - 1
+  high = (length xs) - 1
