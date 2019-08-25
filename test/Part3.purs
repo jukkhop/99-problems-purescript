@@ -2,7 +2,7 @@ module Part3 where
 
 import Prelude
 
-import Data.List (all, fromFoldable, length, nub)
+import Data.List (all, fromFoldable, length, nub, sort)
 import Data.Maybe (fromMaybe)
 import Data.String.CodeUnits (toCharArray)
 import Effect (Effect)
@@ -11,7 +11,10 @@ import Problem21 (insertAt')
 import Problem22 (range)
 import Problem23 (rndSelect)
 import Problem24 (diffSelect)
+import Problem25 (rndPermu)
 import Test.Assert (assert)
+
+infix 4 notEq as !=
 
 main :: Effect Unit
 main = do
@@ -28,3 +31,9 @@ main = do
   log "(diffSelect 5 10) should return 5 different numbers from range 1..10"
   diffs <- diffSelect 5 10
   assert $ (length diffs == 5) && (nub diffs == diffs) && (all (\x -> x > 0 && x < 11) diffs)
+  --
+  log "(rndPermu 'abcdef') should return a permutation of 'abcdef' "
+  let input = fromFoldable $ toCharArray "abcdef"
+  permu <- rndPermu input
+  assert $ length permu == length input && permu != input && sort permu == input
+  --
