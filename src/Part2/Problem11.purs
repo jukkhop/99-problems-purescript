@@ -13,4 +13,4 @@ toElem x | length x > 1 = Left (Tuple (length x) (head x))
 toElem x = Right (head x)
 
 encodeModified :: ∀ a. Eq a => NonEmptyArray a -> Array (Elem a)
-encodeModified x = map toElem (group $ toArray x)
+encodeModified x = (group $ toArray x) <#> toElem

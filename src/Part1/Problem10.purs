@@ -7,4 +7,4 @@ import Data.Array.NonEmpty (NonEmptyArray, head, length, toArray)
 import Data.Tuple (Tuple(..))
 
 encode :: ∀ a. Eq a => NonEmptyArray a -> Array (Tuple Int a)
-encode x = map (\e -> Tuple (length e) (head e)) (group $ toArray x)
+encode x = (group $ toArray x) <#> (\e -> Tuple (length e) (head e))
