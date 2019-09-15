@@ -9,4 +9,3 @@ data NestedArray a
 flatten :: ∀ a. NestedArray a -> Array a
 flatten (Elem x) = [ x ]
 flatten (NestedArray x) = concatMap flatten x
-

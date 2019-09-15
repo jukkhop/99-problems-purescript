@@ -16,12 +16,11 @@ reduce :: ∀ a. Eq a => a -> NonEmptyArray (Elem a) -> NonEmptyArray (Elem a)
 reduce cur acc | snd (head acc) != cur = (Tuple 1 cur) : acc
 reduce cur acc = do
   let
-    withoutFirst = fromArray (tail acc)
-    elem = Tuple (fst (head acc) + 1) (snd (head acc))
-
-  case withoutFirst of
+    first = head acc
+    elem = Tuple (fst first + 1) (snd first)
+  case (fromArray $ tail acc) of
     Nothing -> singleton elem
-    Just elems -> (singleton elem) <> elems
+    Just elems -> singleton elem <> elems
 
 simplify :: ∀ a. Elem a -> SimpleElem a
 simplify el | fst el > 1 = Left el
