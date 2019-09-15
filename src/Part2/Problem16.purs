@@ -5,8 +5,8 @@ import Data.Array (catMaybes, mapWithIndex)
 import Data.Maybe (Maybe(..))
 
 dropEvery :: ∀ a. Array a -> Int -> Array (a)
-dropEvery x nth = catMaybes $ mapWithIndex mapper x
+dropEvery x nth = catMaybes $ mapWithIndex mapElem x
   where
-    mapper :: Int -> a -> Maybe a
-    mapper i elem | (i + 1) `mod` nth == 0 = Nothing
-    mapper _ elem = Just elem
+    mapElem :: Int -> a -> Maybe a
+    mapElem i elem | (i + 1) `mod` nth == 0 = Nothing
+    mapElem _ elem = Just elem

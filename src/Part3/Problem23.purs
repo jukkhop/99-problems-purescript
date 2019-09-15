@@ -10,7 +10,7 @@ import Effect.Random (randomInt)
 rndSelect :: ∀ a. List a -> Int -> Effect (List a)
 rndSelect xs n = do
   randoms <- replicateM n (randomInt 0 high)
-  pure $ catMaybes (foldl folder Nil randoms)
+  pure $ catMaybes (foldl f Nil randoms)
   where
     high = length xs - 1
-    folder acc cur = xs !! cur : acc
+    f acc cur = xs !! cur : acc
